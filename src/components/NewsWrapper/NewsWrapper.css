@@ -1,8 +1,10 @@
 .app-header {
   margin: 1rem 2rem;
+  font-size: 2rem; /* Default font size for larger screens */
 }
 
 .news-wrapper {
+  width: 100%;
   padding: 1rem;
 }
 
@@ -19,34 +21,55 @@
 }
 
 .news-card-container {
-  flex: 1 1 calc(33.333% - 0.55rem); /* Three cards per row with space around */
-  max-width: calc(33.333% - 0.55rem);
+  flex: 1 1 calc(33.333% - 0.8rem); /* Three cards per row with gap */
+  max-width: calc(33.333% - 0.8rem); /* Ensures proper spacing */
   box-sizing: border-box;
   margin-bottom: 1rem;
 }
 
 .no-data {
-    margin-top: 5rem;
-    font-size: 1.5rem;
-    text-align: center;
+  margin-top: 5rem;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
+/* Large screens (Desktop) */
 @media (max-width: 1200px) {
   .news-card-container {
-    flex: 1 1 calc(50% - 0.55rem); /* Two cards per row */
-    max-width: calc(50% - 0.55rem);
+    flex: 1 1 calc(50% - 0.8rem); /* Two cards per row */
+    max-width: calc(50% - 0.8rem);
+  }
+
+  .app-header {
+    font-size: 1.8rem; /* Slightly smaller font on medium screens */
   }
 }
 
+/* Tablets and smaller screens (Tablet size) */
 @media (max-width: 768px) {
+  .news-card-container {
+    flex: 1 1 calc(50% - 0.8rem); /* Two cards per row */
+    max-width: calc(50% - 0.8rem);
+  }
+
+  .app-header {
+    font-size: 1.6rem; /* Adjust header font size */
+  }
+}
+
+/* Mobile size (Portrait and smaller screens) */
+@media (max-width: 480px) {
   .news-card-container {
     flex: 1 1 100%; /* One card per row */
     max-width: 100%;
   }
-}
 
-@media (max-width: 480px) {
   .app-header {
     font-size: 1.2rem; /* Smaller font on very small screens */
+    margin: 1rem; /* Smaller margins on small screens */
+  }
+
+  .no-data {
+    font-size: 1.2rem; /* Adjust the no-data text size for small screens */
   }
 }

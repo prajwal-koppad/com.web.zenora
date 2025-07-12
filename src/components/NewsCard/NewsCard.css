@@ -1,8 +1,8 @@
 .news-card {
-  flex: 1 1 calc(25% - 16px);
+  flex: 1 1 calc(25% - 16px); /* Default: 4 cards per row */
   box-sizing: border-box;
   padding: 1rem;
-  margin: 0rem 0.3rem 1.5rem 0.3rem;
+  margin: 0 0.3rem 1.5rem 0.3rem;
   position: relative;
   overflow: visible;
   border: 0.05rem solid #ddd;
@@ -40,6 +40,7 @@
   margin: auto;
   padding: 0 1rem;
 }
+
 .card-title {
   font-size: 1.25rem;
   font-weight: bold;
@@ -94,3 +95,54 @@
   transform: translateY(-2px);
 }
 
+/* MEDIA QUERIES FOR RESPONSIVENESS */
+
+/* For large screens (desktop) */
+@media (max-width: 1200px) {
+  .news-card {
+    flex: 1 1 calc(33.333% - 16px); /* 3 cards per row */
+  }
+}
+
+/* For medium screens (tablets) */
+@media (max-width: 768px) {
+  .news-card {
+    flex: 1 1 calc(50% - 16px); /* 2 cards per row */
+  }
+
+  .card-title {
+    font-size: 1.1rem; /* Slightly smaller titles */
+  }
+
+  .card-text {
+    font-size: 0.95rem; /* Slightly smaller text */
+  }
+}
+
+/* For small screens (mobile phones) */
+@media (max-width: 480px) {
+  .news-card {
+    flex: 1 1 100%; /* 1 card per row */
+    margin-bottom: 1.2rem; /* Add more space between cards */
+  }
+
+  .card-title {
+    font-size: 1rem; /* Smaller font on mobile */
+  }
+
+  .card-text {
+    font-size: 0.9rem; /* Smaller text on mobile */
+  }
+
+  .read-more {
+    font-size: 0.9rem; /* Smaller button */
+  }
+
+  .trending-tag {
+    font-size: 0.7rem; /* Smaller trending tag */
+  }
+
+  .new-tag {
+    font-size: 0.7rem; /* Smaller new tag */
+  }
+}

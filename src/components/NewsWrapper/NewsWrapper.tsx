@@ -25,6 +25,7 @@ const NewsWrapper = (props: any) => {
         props.pageSize
       );
       const response = await fetch(url);
+      console.log("fetching news..")
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);
       }
@@ -33,7 +34,7 @@ const NewsWrapper = (props: any) => {
       setTotalResults(parsedData?.totalArticles);
       setLoading(false);
     } catch (error) {
-        console.error("Error while fetching news:", error);
+      console.error("Error while fetching news:", error);
     } finally {
       props.setProgress(100);
     }
@@ -44,7 +45,6 @@ const NewsWrapper = (props: any) => {
       AppEnums.ZENORA
     }`;
     updateNews();
-    console.log(articles.length <= 0)
   }, []);
 
   return (
@@ -52,27 +52,33 @@ const NewsWrapper = (props: any) => {
       <h1 className="app-header">
         Zenora - Top Headlines <small>- {toTitleCase(props.category)}</small>
       </h1>
-      {articles.length <= 0 && <h4 className="no-data">Sorry, No News Available, Please Try Again Later</h4>}
-      <div className="news-wrapper">
-        {loading && <Spinner />}
-        <div className="news-cards">
-          <div className="news-row">
-            {articles.map((element) => (
-              <div className="news-card-container" key={element.url}>
-                <NewsCard
-                  title={element?.title || ""}
-                  description={element?.description || ""}
-                  imageUrl={element?.image}
-                  newsUrl={element?.url}
-                  author={element?.source}
-                  date={element?.publishedAt}
-                  totalResults={totalResults}
-                />
-              </div>
-            ))}
+      {loading ? (
+        <Spinner />
+      ) : articles.length === 0 ? (
+        <h4 className="no-data">
+          Sorry, No News Available, Please Try Again Later
+        </h4>
+      ) : (
+        <div className="news-wrapper">
+          <div className="news-cards">
+            <div className="news-row">
+              {articles.map((element) => (
+                <div className="news-card-container" key={element.url}>
+                  <NewsCard
+                    title={element?.title || ""}
+                    description={element?.description || ""}
+                    imageUrl={element?.image}
+                    newsUrl={element?.url}
+                    author={element?.source}
+                    date={element?.publishedAt}
+                    totalResults={totalResults}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
